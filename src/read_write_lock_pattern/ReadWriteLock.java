@@ -8,7 +8,7 @@ public final class ReadWriteLock {
 	private boolean preferWriter = true;
 	
 	public synchronized void readLock() throws InterruptedException {
-		while (writingWriters > 0 | (preferWriter & waitingWriters > 0)) {
+		while (writingWriters > 0 || (preferWriter && waitingWriters > 0)) {
 			wait();
 		}
 		readingReaders++;
@@ -23,7 +23,7 @@ public final class ReadWriteLock {
 	public synchronized void writeLock() throws InterruptedException {
 		waitingWriters++;
 		try {
-			while (readingReaders > 0 | writingWriters > 0) {
+			while (readingReaders > 0 || writingWriters > 0) {
 				wait();
 			}
 		} finally {

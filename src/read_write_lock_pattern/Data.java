@@ -27,8 +27,8 @@ public class Data {
 	 * @throws InterruptedException
 	 */
 	public char[] read() throws InterruptedException {
-		lock.readLock();
 		try {
+			lock.readLock();
 			return doRead();
 		} finally {
 			lock.readUnlock();

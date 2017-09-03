@@ -7,22 +7,26 @@ import java.util.Random;
  */
 public class WriterThread extends Thread {
 	
-	private static final Random random = new Random();	// スレッド待機用
-	private final Data data;							// データ
-	private final String filler;						// 書き込み文字
-	private int index = 0;								// インデックス
+	private static final Random random = new Random();
+	private final Data data;
+	private final String filler;
+	private int index = 0;
 	
 	public WriterThread(Data data, String filler) {
 		this.data = data;
 		this.filler = filler;
 	}
 	
+	@Override
 	public void run() {
 		try {
+			int count = 0;
 			while (true) {
+				count++;
+				System.out.println("WriterThread : " + count);
 				char c = nextchar();
 				data.write(c);
-				Thread.sleep(random.nextInt(1000));
+				Thread.sleep(random.nextInt(50));
 			}
 		} catch (InterruptedException e) {
 		}

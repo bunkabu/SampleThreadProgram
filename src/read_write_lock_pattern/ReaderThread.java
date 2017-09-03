@@ -1,10 +1,5 @@
 package read_write_lock_pattern;
 
-/**
- * Dataクラスは
- * @author ookawarakeita
- *
- */
 public class ReaderThread extends Thread {
 
 	private final Data data;
