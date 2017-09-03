@@ -16,6 +16,26 @@ public class Host {
 				helper.handle(count, c);
 			}
 		}.start();
+		
+/* ThreadクラスのコンストラクタにRunnableクラスの無名インタークラスを与えます。
+		new Thread(
+			new Runnable() {
+				public void run() {
+					helper.handle(count, c);
+				}
+			}
+		).start();
+*/
+	
+/* 下記のように変数runnableを作成してから、Threadクラスのコンストラクタに与える方法もあり。
+		Runnable runnable = new Runnable() {
+			public void run() {
+				helper.handle(count, c);
+			}
+		};
+		new Thread(runnable).start();
+*/	
+		
 		System.out.println("    request(" + count + ", " + c + " ) END");
 	}
 }
